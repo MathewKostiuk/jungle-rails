@@ -134,3 +134,56 @@ cat3.products.create!({
 
 
 puts "DONE!"
+
+## USERS
+
+User.destroy_all
+
+User.create!({
+  first_name: 'john',
+  last_name: 'doe',
+  email: 'john@doe.com',
+  password: '123456',
+  password_confirmation: '123456'
+  })
+
+User.create!({
+  first_name: 'tom',
+  last_name: 'sawyer',
+  email: 'tom@sawyer.com',
+  password: '123456',
+  password_confirmation: '123456'
+  })
+
+
+# PRODUCT REVIEWS
+
+Review.destroy_all
+
+prod1 = Product.find(1)
+prod2 = Product.find(2)
+prod3 = Product.find(3)
+#
+#
+prod1.reviews.create!({
+    user_id: 1,
+    description: 'its sweet',
+    rating: 4
+  })
+prod2.reviews.create!({
+    user_id: 1,
+    description: 'its awesome',
+    rating: 4
+  })
+
+
+prod3.reviews.create!({
+    user_id: 1,
+    description: 'sucks',
+    rating: 2
+  })
+
+
+
+
+
