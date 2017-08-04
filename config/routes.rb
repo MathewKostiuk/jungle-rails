@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     delete :remove_item
   end
 
+  resources :reviews, only: [:destroy]
+
   resources :orders, only: [:create, :show]
 
   resources :users, only: [:new, :create]
