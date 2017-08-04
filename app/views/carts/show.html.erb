@@ -8,6 +8,9 @@
     <table class="table table-bordered">
       <thead>
         <tr>
+        <% if cart.empty? %>
+        <%= render 'emptycart' %>
+        <% else %>
           <th colspan="2">Product</th>
           <th>Unit Price</th>
           <th>Quantity</th>
@@ -16,6 +19,7 @@
       </thead>
       <tbody>
         <% @cart_total = 0 %>
+        <% logger.debug "cart is #{cart.empty?}" %>
         <% cart.each do |product_id, details| %>
           <%= render 'item', product_id: product_id, details: details %>
         <% end %>
@@ -49,5 +53,6 @@
       <% end %>
     </div>
   </div>
+  <% end %>
 
 </section>
