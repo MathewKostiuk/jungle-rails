@@ -17,7 +17,6 @@
       </thead>
       <tbody>
         <% @order.line_items.each do |line_item| %>
-        <% logger.debug "line_item: #{line_item.product_id}" %>
           <%= render 'item', line_item: line_item %>
         <% end %>
       </tbody>
