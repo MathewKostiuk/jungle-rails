@@ -1,4 +1,10 @@
-    <% @product.reviews.each do |review| %>
-        <div> <%= "Rating: #{review.rating}" %> </div>
+    <% @product.reviews.order("created_at DESC").each do |review| %>
+        <% user = User.find(review.user_id) %>
+        <% if review.description.blank? %>
+        <div> <%= "#{user.first_name} gave a rating of #{review.rating}/5" %> </div>
+        <% else %>
+        <div> <%= "Review By: #{user.first_name}" %> </div>
         <div> <%= "Description: #{review.description}" %> </div>
+        <div> <%= "Rating: #{review.rating}" %> </div>
+        <% end %>
     <% end %>

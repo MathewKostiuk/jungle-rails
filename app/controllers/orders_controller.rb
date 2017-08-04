@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
 
     if order.valid?
       empty_cart!
-      logger.debug "order= #{order}"
       UserMailer.order_email(order).deliver_now
       redirect_to order, notice: 'Your Order has been placed.'
     else
