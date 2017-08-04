@@ -1,6 +1,4 @@
     <% @product.reviews.each do |review| %>
-      <% user = User.find(review.user_id) %>
-      <div> <%= "Review made by: #{user.email}" %> </div>
-      <div> <%= "Rating: #{review.rating}" %> </div>
-      <div> <%= "Description: #{review.description}" %> </div>
+        <div> <%= "Rating: #{review.rating}" %> </div>
+        <div> <%= "Description: #{review.description}" %> </div>
     <% end %>
