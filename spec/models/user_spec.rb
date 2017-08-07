@@ -57,5 +57,29 @@ RSpec.describe User, type: :model do
         })
       expect(@user.errors.messages[:last_name]).to include("is too short (minimum is 2 characters)")
     end
+    it 'should be invalid when password is below 3 characters' do
+      @user = User.create({
+        first_name: 'name',
+        last_name: 'name',
+        email: 'john@doe.com',
+        password: '12',
+        password_confirmation: '12'
+        })
+      expect(@user.errors.messages[:password]).to include("is too short (minimum is 3 characters)")
+    end
+  end
+  describe '.authenticate_with_credentails' do
+    it 'should return an instance of a user' do
+      expect(User.authenticate_with_credentials("john@doe.com", '123456')).to eq(User.find_by_email('john@doe.com'))
+    end
+    it 'should return nil when email is invalid' do
+      expect(User.authenticate_with_credentials("best@test.com", '123456')).to eq(nil)
+    end
+    it 'should return an instance of a user when accidental spaces are inputed' do
+      expect(User.authenticate_with_credentials("   john@doe.com   ", '123456')).to eq(User.find_by_email('john@doe.com'))
+    end
+    it 'should return an instance of a user when case is wrong' do
+      expect(User.authenticate_with_credentials("JoHn@dOe.com", '123456')).to eq(User.find_by_email('john@doe.com'))
+    end
   end
 end
