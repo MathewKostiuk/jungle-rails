@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
 
   validates :first_name, length: { minimum: 2 }
   validates :last_name, length: { minimum: 2 }
-  validates :email, uniqueness: true
+  validates :email, uniqueness: { case_sensitive: false }
 end
