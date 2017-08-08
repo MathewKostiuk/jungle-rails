@@ -18,19 +18,11 @@ RSpec.feature "ProductDetails", type: :feature, js: true do
   scenario "They see a specific products details" do
     # ACT
     visit root_path
-
-
-
     find('.pull-right').click
-
-    puts page.html
-
     sleep(5)
     # DEBUG
     save_screenshot
     expect(page).to have_css '.products-show'
-
     # VERIFY
   end
-
 end
